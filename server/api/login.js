@@ -7,8 +7,5 @@ module.exports = async (req, res) => {
   if (!user || !jwtoken.comparePassword(user, req.body.password)) {
     return res.status(403).end()
   }
-  res.send({
-    user,
-    accessToken: jwtoken.jwt(user)
-  })
+  res.send(jwtoken.jwt(user))
 }

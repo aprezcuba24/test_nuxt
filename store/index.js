@@ -1,12 +1,26 @@
-export const actions = {
-  async register(_, params) {
-    const data = await this.$axios.$post('/api/register', params)
-    console.log(data)
-    console.log('register')
+export const state = () => ({
+  accessToken: '',
+  user: {}
+})
+
+export const mutations = {
+  setUser(state, data) {
+    state.accessToken = data.accessToken
+    state.user = data.user
   },
-  async login(_, params) {
+  clearUser(state) {
+    state.accessToken = ''
+    state.user = {}
+  }
+}
+
+export const actions = {
+  async register({ commit }, params) {
+    const data = await this.$axios.$post('/api/register', params)
+    commit('setUser', data)
+  },
+  async login({ commit }, params) {
     const data = await this.$axios.$post('/api/login', params)
-    console.log(data)
-    console.log('login')
+    commit('setUser', data)
   }
 }

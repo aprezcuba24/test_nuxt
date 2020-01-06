@@ -23,11 +23,13 @@
         <button>{{ $t('btn_submit') }}</button>
       </div>
     </form>
+    <nuxt-link to="/login/">{{ $t('a_login') }}</nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
+  layout: "login",
   data() {
     return {
       form: {
@@ -39,11 +41,13 @@ export default {
   },
   methods: {
     async submit() {
+      // TODO: I need to validate the two passwords.
       const form = JSON.parse(JSON.stringify(this.form));
       if (!form.email) {
         return;
       }
       const data = await this.$store.dispatch("register", form);
+      this.$router.replace("/");
     }
   }
 };
@@ -54,6 +58,7 @@ export default {
   "en": {
     "lb_email": "Email",
     "lb_password": "Password",
+    "a_login": "Login",
     "lb_password_repeat": "Password Repeat",
     "btn_submit": "Submit"
   }

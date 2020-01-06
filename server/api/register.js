@@ -11,8 +11,5 @@ module.exports = async (req, res) => {
     password: jwtoken.encryptPassword(password),
   })
   const user = await collection.findOne({ email: req.body.email })
-  res.send({
-    user: user,
-    accessToken: jwtoken.jwt(user)
-  })
+  res.send(res.send(jwtoken.jwt(user)))
 }

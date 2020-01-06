@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <form action="#" @submit.prevent="submit">
+      <strong v-show="error">{{ $t('show_error') }}</strong>
       <div class="item">
         <label for>
           {{ $t('lb_email') }}
@@ -17,13 +18,16 @@
         <button>{{ $t('btn_submit') }}</button>
       </div>
     </form>
+    <nuxt-link to="/login/register">{{ $t('a_register') }}</nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
+  layout: "login",
   data() {
     return {
+      error: false,
       form: {
         email: "",
         password: ""
@@ -32,18 +36,17 @@ export default {
   },
   methods: {
     async submit() {
+      this.error = false;
       const form = JSON.parse(JSON.stringify(this.form));
       if (!form.email) {
         return;
       }
       try {
         const data = await this.$store.dispatch("login", form);
+        this.$router.replace("/");
       } catch (e) {
-        console.log(e);
+        this.error = true;
       }
-
-      // console.log(JSON.parse(JSON.stringify(this.form)));
-      // console.log("aqui");
     }
   }
 };
@@ -54,7 +57,9 @@ export default {
   "en": {
     "lb_email": "Email",
     "lb_password": "Password",
-    "btn_submit": "Submit"
+    "btn_submit": "Submit",
+    "a_register": "Register",
+    "show_error": "Password or email incorrect"
   }
 }
 </i18n>
