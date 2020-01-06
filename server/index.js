@@ -24,7 +24,7 @@ async function start() {
     await nuxt.ready()
   }
 
-  app.get('/api', require('./api/login'))
+  app.post('/api/login', require('./api/login'))
   app.post('/api/register', require('./api/register'))
 
   // Give nuxt middleware to express

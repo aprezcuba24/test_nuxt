@@ -14,7 +14,7 @@
         </label>
       </div>
       <div class="item">
-        <button>{{ $t('submit') }}</button>
+        <button>{{ $t('btn_submit') }}</button>
       </div>
     </form>
   </div>
@@ -36,7 +36,11 @@ export default {
       if (!form.email) {
         return;
       }
-      const data = await this.$store.dispatch("login", form);
+      try {
+        const data = await this.$store.dispatch("login", form);
+      } catch (e) {
+        console.log(e);
+      }
 
       // console.log(JSON.parse(JSON.stringify(this.form)));
       // console.log("aqui");
