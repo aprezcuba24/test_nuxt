@@ -34,7 +34,17 @@ module.exports = {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
+    ['nuxt-i18n', {
+      locales: [
+        {
+          code: 'en',
+          iso: 'en-US'
+        },
+      ],
+      defaultLocale: 'en',
+      vueI18nLoader: true
+    }],
   ],
   /*
   ** Nuxt.js modules
@@ -50,6 +60,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: '/'
   },
   /*
   ** Build configuration
@@ -58,7 +69,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }
