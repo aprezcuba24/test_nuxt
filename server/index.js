@@ -27,6 +27,13 @@ async function start() {
   app.post('/api/login', require('./api/login'))
   app.post('/api/register', require('./api/register'))
 
+  const contact = require('./api/contact')
+  app.post('/api/contact', contact.create)
+  app.get('/api/contact', contact.list)
+  app.get('/api/contact/:id', contact.get)
+  app.put('/api/contact/:id', contact.update)
+  app.delete('/api/contact/:id', contact.remove)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
