@@ -28,6 +28,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/full_callendar.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -40,7 +41,7 @@ module.exports = {
         {
           code: 'en',
           iso: 'en-US'
-        },
+        }
       ],
       defaultLocale: 'en',
       vueI18nLoader: true

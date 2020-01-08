@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <b-button to="/contact/form" class="b_create">{{ $t('b_create') }}</b-button>
     <h1>{{ $t('t_title') }}</h1>
     <b-table striped hover :items="items" :fields="fields">

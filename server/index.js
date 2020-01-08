@@ -34,6 +34,13 @@ async function start() {
   app.put('/api/contact/:id', contact.update)
   app.delete('/api/contact/:id', contact.remove)
 
+  const evnets = require('./api/events')
+  app.post('/api/event', evnets.create)
+  app.get('/api/event', evnets.list)
+  app.get('/api/event/:id', evnets.get)
+  app.put('/api/event/:id', evnets.update)
+  app.delete('/api/event/:id', evnets.remove)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

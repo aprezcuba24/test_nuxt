@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="header">
-      <h1>Test Ricardo</h1>
+      <nuxt-link to="/">
+        <h1>Test Ricardo</h1>
+      </nuxt-link>
       <div class="link">
         <nuxt-link to="/login/logout">{{ $t('a_logout') }}</nuxt-link>
       </div>
@@ -9,7 +11,9 @@
         <nuxt-link to="/contact">{{ $t('a_contact') }}</nuxt-link>
       </div>
     </div>
-    <nuxt />
+    <main class="container">
+      <nuxt />
+    </main>
   </div>
 </template>
 
@@ -33,6 +37,7 @@ export default {
   background-image: url("https://source.unsplash.com/random/1600x200");
   height: 200px;
   padding: 50px 50px 0 50px;
+  margin-bottom: 30px;
 }
 .header h1 {
   float: left;
@@ -46,5 +51,8 @@ export default {
   padding: 5px;
   border-radius: 5px;
   margin-right: 5px;
+}
+main {
+  padding-bottom: 50px;
 }
 </style>
