@@ -2,6 +2,7 @@ const mongodb = require('./mongodb')
 const ObjectId = require('mongodb').ObjectId
 
 const list = async (req, res) => {
+  console.log(req.user)
   const collection = await mongodb('contacts')
   res.send(await collection.find().toArray())
 }

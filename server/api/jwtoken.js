@@ -5,7 +5,7 @@ const SECRET_KEY = "secretkey23456"
 
 const jwt = user => {
   const expiresIn = 24 * 60 * 60
-  const accessToken = jsonwebtoken.sign({ id: user._id }, SECRET_KEY, {
+  const accessToken = jsonwebtoken.sign({ user }, SECRET_KEY, {
     expiresIn: expiresIn
   })
   return {
@@ -28,4 +28,5 @@ module.exports = {
   jwt,
   encryptPassword,
   comparePassword,
+  SECRET_KEY
 }

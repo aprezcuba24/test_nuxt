@@ -22,3 +22,5 @@ $ npm run generate
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 sudo docker run -d -p 27017:27017 -v mongo_data:/data/db mongo:3.4.1
+
+https://devdocs.io/jest/

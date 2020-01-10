@@ -3,10 +3,12 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const app = express()
+const jwt = require('express-jwt')
+const jwtoken = require('./api/jwtoken')
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
-config.dev = process.env.NODE_ENV !== 'production'
+config.env = process.env.NODE_ENV || 'development'
 
 async function start() {
   app.use(bodyParser())
@@ -16,19 +18,17 @@ async function start() {
 
   const { host, port } = nuxt.options.server
 
-  // Build only in dev mode
-  if (config.dev) {
-    const builder = new Builder(nuxt)
-    await builder.build()
-  } else {
-    await nuxt.ready()
-  }
-
   app.post('/api/login', require('./api/login'))
   app.post('/api/register', require('./api/register'))
 
+  // app.use(jwt({ secret: jwtoken.SECRET_KEY }).unless({
+  //   path: ['/', '/api/login', '/api/register']
+  // }))
+
+  app.use('/api', jwt({ secret: jwtoken.SECRET_KEY }))
+
   const contact = require('./api/contact')
-  app.post('/api/contact', contact.create)
+  app.post('/api/contact', jwt({ secret: jwtoken.SECRET_KEY }), contact.create)
   app.get('/api/contact', contact.list)
   app.get('/api/contact/:id', contact.get)
   app.put('/api/contact/:id', contact.update)
@@ -41,14 +41,29 @@ async function start() {
   app.put('/api/event/:id', evnets.update)
   app.delete('/api/event/:id', evnets.remove)
 
+  // Build only in dev mode
+  if (config.env === 'development') {
+    const builder = new Builder(nuxt)
+    await builder.build()
+  } else {
+    await nuxt.ready()
+  }
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
   // Listen the server
-  app.listen(port, host)
+  const server = app.listen(port, host)
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
+  return {
+    app, server
+  }
 }
-start()
+if (process.env.NODE_ENV !== 'test') {
+  start()
+}
+
+module.exports = start

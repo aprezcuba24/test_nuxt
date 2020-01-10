@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectId
 const tableName = 'events'
 
 const list = async (req, res) => {
+  console.log('events...')
+  console.log(req.user)
   const collection = await mongodb(tableName)
   res.send(await collection.find().toArray())
 }
