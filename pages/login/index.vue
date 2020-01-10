@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form action="#" @submit.prevent="submit">
+    <form @submit.prevent="submit" action="#">
       <strong v-show="error">{{ $t('show_error') }}</strong>
       <div class="item">
         <label for>
@@ -24,32 +24,32 @@
 
 <script>
 export default {
-  layout: "login",
+  layout: 'login',
   data() {
     return {
       error: false,
       form: {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
     async submit() {
-      this.error = false;
-      const form = JSON.parse(JSON.stringify(this.form));
+      this.error = false
+      const form = JSON.parse(JSON.stringify(this.form))
       if (!form.email) {
-        return;
+        return
       }
       try {
-        const data = await this.$store.dispatch("login", form);
-        this.$router.replace("/");
+        await this.$store.dispatch('login', form)
+        this.$router.replace('/')
       } catch (e) {
-        this.error = true;
+        this.error = true
       }
     }
   }
-};
+}
 </script>
 
 <i18n>
