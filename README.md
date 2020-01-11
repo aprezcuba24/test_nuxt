@@ -1,6 +1,11 @@
-# ricardo_test
+# This is a test of nuxt with express
 
-> My cat&#39;s pajamas Nuxt.js project
+> This is a simple application to schedule appointment in a personal calendar. The application has the followent cases of study.
+
+- Login by email and password.
+- Register a user by email and password.
+- CRUD of cantacts. Each contact has an email and an name.
+- Calendar of events. Each event has a title, a relation with contact and start and end date.
 
 ## Build Setup
 
@@ -14,13 +19,12 @@ $ npm run dev
 # build for production and launch server
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## To run the test
 
-sudo docker run -d -p 27017:27017 -v mongo_data:/data/db mongo:3.4.1
+```bash
+$ npm run test
+```
 
-https://devdocs.io/jest/
+> Note: To run the application, you need to execute the mongodb first. And it must run on "localhost:27017"
