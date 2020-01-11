@@ -5,7 +5,7 @@ const SECRET_KEY = 'secretkey23456'
 
 const jwt = (user) => {
   const expiresIn = 24 * 60 * 60
-  const accessToken = jsonwebtoken.sign({ data: user }, SECRET_KEY, {
+  const accessToken = jsonwebtoken.sign({ ...user }, SECRET_KEY, {
     expiresIn
   })
   return {

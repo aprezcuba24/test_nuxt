@@ -3,14 +3,14 @@ const mongodb = require('./mongodb')
 
 const list = async (req, res) => {
   const collection = await mongodb('contacts')
-  res.send(await collection.find({ userId: req.user.data._id }).toArray())
+  res.send(await collection.find({ userId: req.user._id }).toArray())
 }
 
 const get = async (req, res) => {
   const collection = await mongodb('contacts')
   const contact = await collection.findOne({
     _id: ObjectId(req.params.id),
-    userId: req.user.data._id
+    userId: req.user._id
   })
   if (!contact) {
     return res.status(404).end()
@@ -24,7 +24,7 @@ const create = async (req, res) => {
   const { ops } = (await collection.insertOne({
     email,
     name,
-    userId: req.user.data._id
+    userId: req.user._id
   }))
   res.send(ops[0])
 }
@@ -32,7 +32,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   const { email, name } = req.body
   const _id = ObjectId(req.params.id)
-  const userId = req.user.data._id
+  const userId = req.user._id
   const collection = await mongodb('contacts')
   const query = {
     _id,
@@ -51,7 +51,7 @@ const remove = async (req, res) => {
   const collection = await mongodb('contacts')
   const { result } = await collection.remove({
     _id,
-    userId: req.user.data._id
+    userId: req.user._id
   })
   if (result.n === 0) {
     return res.status(404).end()
