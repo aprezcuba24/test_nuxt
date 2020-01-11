@@ -4,10 +4,11 @@ const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const app = express()
 const jwt = require('express-jwt')
+const config = require('../nuxt.config.js')
 const jwtoken = require('./api/jwtoken')
+const { Resourse } = require('./api/resourse.js')
 
 // Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
 config.env = process.env.NODE_ENV || 'development'
 
 async function start() {
@@ -21,25 +22,10 @@ async function start() {
   app.post('/api/login', require('./api/login'))
   app.post('/api/register', require('./api/register'))
 
-  // app.use(jwt({ secret: jwtoken.SECRET_KEY }).unless({
-  //   path: ['/', '/api/login', '/api/register']
-  // }))
-
   app.use('/api', jwt({ secret: jwtoken.SECRET_KEY }))
 
-  const contact = require('./api/contact')
-  app.post('/api/contact', jwt({ secret: jwtoken.SECRET_KEY }), contact.create)
-  app.get('/api/contact', contact.list)
-  app.get('/api/contact/:id', contact.get)
-  app.put('/api/contact/:id', contact.update)
-  app.delete('/api/contact/:id', contact.remove)
-
-  const evnets = require('./api/events')
-  app.post('/api/event', evnets.create)
-  app.get('/api/event', evnets.list)
-  app.get('/api/event/:id', evnets.get)
-  app.put('/api/event/:id', evnets.update)
-  app.delete('/api/event/:id', evnets.remove)
+  Resourse.handle(app, '/api/contact', 'contacts')
+  Resourse.handle(app, '/api/event', 'events')
 
   // Build only in dev mode
   if (config.env === 'development') {

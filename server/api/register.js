@@ -2,7 +2,7 @@ const mongodb = require('./mongodb')
 const jwtoken = require('./jwtoken')
 
 module.exports = async (req, res) => {
-  // TODO: It is necessary to validate the email. The e-mail cannot be repeated.
+  // TODO: It is necessary to validate the email. The e-mail can not be repeated.
   const db = await mongodb()
   const collection = db.collection('users')
   const { email, password } = req.body
