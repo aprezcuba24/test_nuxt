@@ -45,7 +45,7 @@ export default {
       this.$router.replace("/contact");
     }
   }
-};
+}
 </script>
 
 <i18n>
