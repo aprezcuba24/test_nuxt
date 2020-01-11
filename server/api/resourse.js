@@ -51,7 +51,9 @@ class Resourse {
       _id,
       userId
     }
-    await this.collection.update(query, { ...req.body, userId })
+    const { body } = req
+    delete body._id
+    await this.collection.update(query, { ...body, userId })
     const obj = await this.collection.findOne(query)
     this.sendOr404(res, obj)
   }

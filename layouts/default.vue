@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <div class="header">
       <nuxt-link to="/">
         <h1>Test Ricardo</h1>
@@ -19,8 +19,8 @@
 
 <script>
 export default {
-  middleware: "authenticated"
-};
+  middleware: 'authenticated'
+}
 </script>
 
 <i18n>
@@ -32,12 +32,19 @@ export default {
 }
 </i18n>
 
-<style>
+<style scoped>
+.container {
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+}
 .header {
   background-image: url("https://source.unsplash.com/random/1600x200");
+  background-color: #D14;
   height: 200px;
   padding: 50px 50px 0 50px;
   margin-bottom: 30px;
+  border-bottom: 1px solid;
 }
 .header h1 {
   float: left;
