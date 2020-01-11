@@ -1,21 +1,21 @@
 const jsonwebtoken = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
-const SECRET_KEY = "secretkey23456"
+const SECRET_KEY = 'secretkey23456'
 
-const jwt = user => {
+const jwt = (user) => {
   const expiresIn = 24 * 60 * 60
-  const accessToken = jsonwebtoken.sign({ user }, SECRET_KEY, {
-    expiresIn: expiresIn
+  const accessToken = jsonwebtoken.sign({ data: user }, SECRET_KEY, {
+    expiresIn
   })
   return {
     user,
-    accessToken,
+    accessToken
   }
 }
 
-const encryptPassword = password => {
-  var salt = bcrypt.genSaltSync(10);
+const encryptPassword = (password) => {
+  const salt = bcrypt.genSaltSync(10)
   const hash = bcrypt.hashSync(password, salt)
   return hash
 }
