@@ -51,6 +51,7 @@ describe('Contact', () => {
       .set('Authorization', token)
       .expect(404)
 
+    // Update the contact
     data = await client.put(`/api/contact/${contact._id}`)
       .set('Authorization', token)
       .send({ email: 'contact_2@gmail.com', name: 'contact_2' })
