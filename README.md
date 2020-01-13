@@ -1,6 +1,6 @@
 # This is a test of nuxt with express
 
-> This is a simple application to schedule appointment in a personal calendar. The application has the followent cases of study.
+This is a simple application to schedule appointment in a personal calendar. The application has the followent cases of study.
 
 - Login by email and password.
 - Register a user by email and password.
