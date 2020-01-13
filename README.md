@@ -4,8 +4,8 @@ This is a simple application to schedule appointment in a personal calendar. The
 
 - Login by email and password.
 - Register a user by email and password.
-- CRUD of cantacts. Each contact has an email and an name.
-- Calendar of events. Each event has a title, a relation with contact and start and end date.
+- CRUD of contacts. Each contact has an email and a name.
+- Calendar of events. Each event has a title, a relation with contact and starts and end date.
 
 ## Build Setup
 
