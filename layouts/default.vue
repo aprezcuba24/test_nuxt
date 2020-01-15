@@ -2,13 +2,17 @@
   <div class="page">
     <div class="header">
       <nuxt-link to="/">
-        <h1>Test Ricardo</h1>
+        <h1>{{ $t('a_calendar') }}</h1>
       </nuxt-link>
       <div class="link">
-        <nuxt-link to="/login/logout">{{ $t('a_logout') }}</nuxt-link>
+        <nuxt-link to="/login/logout">
+          {{ $t('a_logout') }}
+        </nuxt-link>
       </div>
       <div class="link">
-        <nuxt-link to="/contact">{{ $t('a_contact') }}</nuxt-link>
+        <nuxt-link to="/contact">
+          {{ $t('a_contact') }}
+        </nuxt-link>
       </div>
     </div>
     <main class="container">
@@ -19,7 +23,7 @@
 
 <script>
 export default {
-  middleware: 'authenticated'
+  middleware: 'authenticated',
 }
 </script>
 
@@ -27,7 +31,8 @@ export default {
 {
   "en": {
     "a_logout": "Logout",
-    "a_contact": "Contacts"
+    "a_contact": "Contacts",
+    "a_calendar": "Calendar"
   }
 }
 </i18n>
@@ -39,8 +44,9 @@ export default {
   border-radius: 5px;
 }
 .header {
+  background-size: cover;
   background-image: url("https://source.unsplash.com/random/1600x200");
-  background-color: #D14;
+  background-color: #10910e;
   height: 200px;
   padding: 50px 50px 0 50px;
   margin-bottom: 30px;

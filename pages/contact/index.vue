@@ -14,11 +14,11 @@
 <script>
 export default {
   async asyncData({ store }) {
-    const items = await store.dispatch("contact/list");
+    const items = await store.dispatch('contact/list')
     return {
       items,
-      fields: ["name", "email", "actions"]
-    };
+      fields: ['name', 'email', 'actions']
+    }
   },
   methods: {
     async remove(_id) {
