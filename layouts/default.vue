@@ -46,7 +46,6 @@ export default {
 .header {
   background-size: cover;
   background-image: url("https://source.unsplash.com/random/1600x200");
-  background-color: #10910e;
   height: 200px;
   padding: 50px 50px 0 50px;
   margin-bottom: 30px;
